@@ -29,18 +29,22 @@ class App extends React.Component{
       textColor:'#de1f23'
     }
   }
+
+  // Get Json Data after render JSX
   componentDidMount(){
 
     this.parseDataToState();
     
   }
 
-
+  // Get Parsing JSON Data(Letters) 
   parseDataToState = () =>{
     
     let tempList = [];
 
     let colors = this.state.colors;
+    
+    // Set Letters to State with colors
     data.board.forEach(function(letter){
       let letterObject = {
         letter:'',
@@ -49,7 +53,6 @@ class App extends React.Component{
       letterObject.letter = letter
       tempList.push(letterObject)
     })
-
     this.setState({ letterList : tempList })
   }
 
@@ -66,14 +69,15 @@ class App extends React.Component{
       // Add the letter to the Temp array for updateing to State
       tempArr.push(letter)
 
-      let originalLetterList = this.state.letterList;
-      let oTempArray = [];
+      let originalLetterList = this.state.letterList
+      let oTempArray = []
       for(let i = 0; i<originalLetterList.length; i++){
         if(originalLetterList[i].letter === letter){
           originalLetterList[i].selected = colors.selected
         }
         oTempArray.push(originalLetterList[i])
       }
+
       // Update the TempArr to Selected Letter List
         this.setState({
           selectedLetterList : tempArr,      
@@ -82,7 +86,7 @@ class App extends React.Component{
 
     }else{
       // Boolean for checking that Letter is in the list of array
-      let found = textArr.includes(letter);
+      let found = textArr.includes(letter)
       let newTextArray = []
 
       // If letter is in the list array
@@ -90,8 +94,8 @@ class App extends React.Component{
         
       // Filters All the letter except the letter what user Clicked 
          newTextArray = textArr.filter( text => text !== letter )
-         let originalLetterList = this.state.letterList;
-         let oTempArray = [];
+         let originalLetterList = this.state.letterList
+         let oTempArray = []
          for(let i = 0; i<originalLetterList.length; i++){
            if(originalLetterList[i].letter === letter){
              originalLetterList[i].selected === colors.default ? originalLetterList[i].selected = colors.selected : originalLetterList[i].selected = colors.default
@@ -112,8 +116,8 @@ class App extends React.Component{
         // Add new Letter to tempArr 
         tempArr.push(letter)
         
-        let originalLetterList = this.state.letterList;
-        let oTempArray = [];
+        let originalLetterList = this.state.letterList
+        let oTempArray = []
         for(let i = 0; i<originalLetterList.length; i++){
           if(originalLetterList[i].letter === letter){
             originalLetterList[i].selected = colors.selected
@@ -135,13 +139,17 @@ class App extends React.Component{
 
   findWord = () =>{
 
-    let text = this.state.selectedLetterList.join('').toLowerCase();
-    let foundWord = dictionary.words.find( word => word === text );
+    let text = this.state.selectedLetterList.join('').toLowerCase()
+
+    // Find the letter from Dictionay data
+    let foundWord = dictionary.words.find( word => word === text )
 
     if(foundWord !== undefined){
       let colors = this.state.colors;
       let originalLetterList = this.state.letterList;
       let oTempArray = [];
+    
+    // Set LetterList for updating its color
       for(let i = 0; i<originalLetterList.length; i++){
       
           if(originalLetterList[i].selected === colors.selected){
@@ -160,7 +168,6 @@ class App extends React.Component{
           textValidation : "InValid",
           textColor : "#de1f23"
          })
-        
       }
     }else{
       this.setState({ 
@@ -170,10 +177,11 @@ class App extends React.Component{
     }    
   }
 
+  // Clear Selected text
   setClearText = () =>{
 
     let colors = this.state.colors;
-    let originalLetterList = this.state.letterList;
+    let originalLetterList = this.state.letterList
   
     for(let i = 0; i<originalLetterList.length; i++){
     
@@ -187,7 +195,7 @@ class App extends React.Component{
     })
   }
 
-
+  // Refresh Letter buttons color
   setLetterBtn = (type) =>{
     let oTempArray = [];
     let colors = this.state.colors;
@@ -225,6 +233,7 @@ class App extends React.Component{
                 </div> 
               </div>
             </div>
+            {/* Hidden Component for Mobile view */}
             <div className="col-md-6 col-sm-10 col-xs-10 contents bottom_2">
               <div className="row">
                   <div className="col-md-12" style={{position:"absolute", bottom:"0"}}>
