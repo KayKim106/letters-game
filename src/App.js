@@ -203,7 +203,7 @@ class App extends React.Component{
     
     if(type === "reset"){
       for(let i = 0; i<originalLetterList.length; i++){
-          if(originalLetterList[i].selected == colors.valid){
+          if(originalLetterList[i].selected === colors.valid){
               originalLetterList[i].selected = colors.selected
           }
            oTempArray.push(originalLetterList[i])
@@ -223,7 +223,7 @@ class App extends React.Component{
             </div>
             <div className="col-md-6 col-sm-10 col-xs-10 contents bottom">
               <div className="row">
-                <div className="col-md-12" style={{position:"absolute", top:"0"}}>
+                <div className="col-md-12">
                 <ClearTextButton onTextClearButton={ this.setClearText } />  
                 </div> 
               </div>

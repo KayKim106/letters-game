@@ -93,4 +93,12 @@ button:hover{
    position:relative !important;
    padding-top:50px;
   }
+  .bottom .row .col-md-12{
+    position: absolute;
+    bottom:0px;
+  }
+  .container{
+    max-width: 450px;
+    min-width:450px;
+  }
 }
